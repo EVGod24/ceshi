@@ -3,20 +3,7 @@
 <head>
   <title>WHOIS查询</title>
   <style>
-  #result {
-    background-color: #f4f4f4;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-  }
-  #result h2 {
-    color: #333;
-    font-size: 24px;
-  }
-  #result p {
-    color: #666;
-    font-size: 16px;
-  }
+  /* 在这里添加你的CSS样式 */
   </style>
 </head>
 <body>
@@ -31,7 +18,7 @@
       event.preventDefault();
       let domain = document.getElementById('domainInput').value;
       let xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://v.api.aa1.cn/api/whois/index.php?domain=' + domain, true);
+      xhr.open('GET', 'http://whois.pconline.com.cn/ipJson.jsp?json=true' + domain, true);
       xhr.onload = function() {
         if (xhr.status === 200) {
           let response = JSON.parse(xhr.responseText);
