@@ -15,18 +15,21 @@
   <div id="result"></div>
   <script>
     document.getElementById('whoisForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      let domain = document.getElementById('domainInput').value;
-      let xhr = new XMLHttpRequest();
-      xhr.open('GET', 'http://whois.pconline.com.cn/ipJson.jsp?json=true' + domain, true);
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          let response = JSON.parse(xhr.responseText);
-          let responseDiv = document.getElementById('result');
-          responseDiv.innerHTML = '查询结果：' + response;
-        }
-      };
-      xhr.send();
+  event.preventDefault();
+  let domain = document.getElementById('domainInput').value;
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://example.com/whois?domain=' + domain, true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      let response = JSON.parse(xhr.responseText);
+      let responseDiv = document.getElementById('result');
+      responseDiv.innerHTML = '查询结果：' + response;
+    }
+  };
+  xhr.onerror = function() {
+    console.log('请求失败');
+  };
+  xhr.send();
     });
   </script>
 </body>
