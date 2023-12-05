@@ -31,7 +31,7 @@
       event.preventDefault();
       let domain = document.getElementById('domainInput').value;
       let xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://example.com/whois?domain=' + domain, true);
+      xhr.open('GET', 'https://v.api.aa1.cn/api/whois/index.php?domain=' + domain, true);
       xhr.onload = function() {
         if (xhr.status === 200) {
           let response = JSON.parse(xhr.responseText);
