@@ -14,23 +14,20 @@
   </form>
   <div id="result"></div>
   <script>
-    // 在这里添加你的JavaScript代码
+    document.getElementById('whoisForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      let domain = document.getElementById('domainInput').value;
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://example.com/whois?domain=' + domain, true);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          let response = JSON.parse(xhr.responseText);
+          let responseDiv = document.getElementById('result');
+          responseDiv.innerHTML = '查询结果：' + response;
+        }
+      };
+      xhr.send();
+    });
   </script>
 </body>
 </html>
-document.getElementById('whoisForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  let domain = document.getElementById('domainInput').value;
-  // 在这里调用发送WHOIS查询请求的函数
-});
-let xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://example.com/whois?domain=' + domain, true);
-xhr.onload = function() {
-  if (xhr.status === 200) {
-    let response = JSON.parse(xhr.responseText);
-    // 在这里处理API的响应数据
-  }
-};
-xhr.send();
-let responseDiv = document.getElementById('result');
-responseDiv.innerHTML = '查询结果：' + response;
